@@ -318,7 +318,7 @@ for(int i=0;i<lnngarr;i++){
                             
 	       }
                    else if(minnode.ndist<=nngnodes[z].ndist){
-                            nngnodes[z].x=0;//j?     
+                            nngnodes[z].x=0; 
                             nngnodes[z].y=0;
                             nngnodes[z].pixelval=0;
                             nngnodes[z].pixelnum=0;
@@ -337,7 +337,7 @@ for(int i=0;i<lnngarr;i++){
 	        tempnode.y=minnode.x;
                 tempnode.ndist=minnode.ndist;//closest distance
                 for(int z=0;z<lnngarr;z++){//find the other distance of neighbour node to tempnode
-                  if(nngnodes[z].x==tempnode.y){
+                  if(nngnodes[z].x==tempnode.y&&nngnodes[z].pixelnum!=0){
                     if(minneighz.ndist>nngnodes[z].ndist){
                         minneighz.pixelnum=nngnodes[z].pixelnum;
 	                minneighz.pixelval=nngnodes[z].pixelval;
@@ -346,9 +346,10 @@ for(int i=0;i<lnngarr;i++){
                         minneighz.ndist=nngnodes[z].ndist;
                        }
                    }
-               }
+               }//minimum value of neoghbout distance between neighbour node and others
 
-               if(minneighz.ndist<tempnode.ndist){//if the new updated distance is bigger than original distance between neighbour node and other node,erease the tempnode and the node we choose to start the search
+               if(minneighz.ndist<tempnode.ndist){
+		    //if the new updated distance is bigger than original distance between neighbour node and other node,erease the tempnode and the node we choose to start the search
                      nngnodes[i].x=0;
                      nngnodes[i].y=0;
                      nngnodes[i].pixelval=0;
