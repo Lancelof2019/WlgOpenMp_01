@@ -202,7 +202,7 @@ for(int i=0;i<tempcounter;i++){
     }//while
 }//for
 
-int ragNode=0;
+//int ragNode=0;
 
 
 priority_queue<nngNode,vector<nngNode>,cmp2>nngprioq;
@@ -309,7 +309,7 @@ for(int i=0;i<lnngarr;i++){
                 tempnode.ndist=mindist;
                 nngnodes[z].ndist=mindist;
                 nngnodes[z].y=tempnode.x;
-	       if(minnode.ndist>.ndist){
+	       if(minnode.ndist>nngnodes[z].ndist){
                             minnode.x=nngnodes[z].x
 			 minnode.y=nngnodes[z].y
 			 minnode.pixelval=nngnodes[z].pixelval;
