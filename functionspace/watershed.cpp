@@ -295,7 +295,7 @@ for(int i=0;i<lnngarr;i++){
       nngNode minneighz=(0,0,0,0,10000.0*10000.0);
       for(int z=0;z<lnngarr;z++){
 	
-       if(nngnodes[z].pixelnum!=0){
+       if(nngnodes[z].pixelnum!=0&&tempnode.x!=nngnodes[z].x){
             // if(minnode.ndist>nngnodes[z].ndist){
 	     if(nngnodes[z].y==tempx||nngnodes[z].y==tempy){
                double npowerDis=pow((((double)nngnodes[z].pixelval)/(double)nngnodes[z].pixelnum)-(((double)mergesum)/(double)mergenum),2);
@@ -337,7 +337,7 @@ for(int i=0;i<lnngarr;i++){
 	        tempnode.y=minnode.x;
                 tempnode.ndist=minnode.ndist;//closest distance
                 for(int z=0;z<lnngarr;z++){//find the other distance of neighbour node to tempnode
-                  if(nngnodes[z].x==tempnode.y&&nngnodes[z].pixelnum!=0){
+                  if(nngnodes[z].x==tempnode.y&&nngnodes[z].pixelnum!=0&&nngnodes[z].x!=tempnode.x){
                     if(minneighz.ndist>nngnodes[z].ndist){
                         minneighz.pixelnum=nngnodes[z].pixelnum;
 	                minneighz.pixelval=nngnodes[z].pixelval;
