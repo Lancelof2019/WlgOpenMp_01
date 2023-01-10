@@ -334,15 +334,15 @@ for(int i=0;i<lnngarr;i++){
                 //tempnode.pixelnum=mergenum;
 	       //tempnode.pixelval=mergesum;
 	       //tempnode.x=tempx;
-	       tempnode.y=minnode.y;
+	        tempnode.y=minnode.x;
                 tempnode.ndist=minnode.ndist;//closest distance
                 for(int z=0;z<lnngarr;z++){//find the other distance of neighbour node to tempnode
                   if(nngnodes[z].x==tempnode.y){
                     if(minneighz.ndist>nngnodes[z].ndist){
                         minneighz.pixelnum=nngnodes[z].pixelnum;
-	               minneighz.pixelval=nngnodes[z].pixelval;
-	               minneighz.x=nngnodes[z].x;
-	               minneighz.y=nngnodes[z].y;
+	                minneighz.pixelval=nngnodes[z].pixelval;
+	                minneighz.x=nngnodes[z].x;
+	                minneighz.y=nngnodes[z].y;
                         minneighz.ndist=nngnodes[z].ndist;
                        }
                    }
