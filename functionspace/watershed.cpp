@@ -274,12 +274,13 @@ for(int i=0;i<nngvec.size();i++){
 int lnngarr=nngvec.size();
 
 list<nngNode> nnglist;
-while(){
+int loopnum=5;
+while(loopnum!=0){
 
 for(int i=0;i<lnngarr;i++){
    nngNode tempnode=(nngnodes[i].x,nngNode[i].y,nngnodes[i].pixelval,nngnodes[i].pixelnum,nngnodes[i].ndist);
    for(int j=0;j<lnngarr;j++){
-   if(i!=j&&tempnode.pixelnum!=0&&nngnodes[j].pixenum!=0&&tempnode.ndist==nngnodes[j].ndist&&tempnode.x=nngnodes[j].y&&nngnodes[j].x=tempnode.y){
+   if(i!=j&&tempnode.pixelnum!=0&&nngnodes[j].pixelnum!=0&&tempnode.ndist==nngnodes[j].ndist&&tempnode.x=nngnodes[j].y&&nngnodes[j].x=tempnode.y){
      nnglist.push_back(tempnode);//cycle find
      int tempx=tempnode.x;
      int tempy=tempnode.y;
@@ -291,6 +292,9 @@ for(int i=0;i<lnngarr;i++){
      nngnodes[j].pixelnum=0;
      nngnodes[j].ndist=10000.0*10000.0;
     // double newdist=0.0;
+/*
+i!=j&&tempnode.pixelnum!=0&&nngnodes[j].pixelnum!=0
+*/
       nngNode minnode=(0,0,0,0,10000.0*10000.0);
       nngNode minneighz=(0,0,0,0,10000.0*10000.0);
       for(int z=0;z<lnngarr;z++){
@@ -307,8 +311,8 @@ for(int i=0;i<lnngarr;i++){
 	       tempnode.x=tempx;
 	       tempnode.y=nngnodes[z].x;
                 tempnode.ndist=mindist;
-                nngnodes[z].ndist=mindist;
-                nngnodes[z].y=tempnode.x;
+                nngnodes[z].ndist=mindist;//cycel distance
+                nngnodes[z].y=tempnode.x;//cycle
 	       if(minnode.ndist>nngnodes[z].ndist){
                             minnode.x=nngnodes[z].x
 			 minnode.y=nngnodes[z].y
@@ -324,19 +328,32 @@ for(int i=0;i<lnngarr;i++){
                             nngnodes[z].pixelnum=0;
                             nngnodes[z].ndist=10000.0*10000.0;
                    
-                 }
-                 
+                 }      
            }//assign the updated value to the nodes which leads to tempnode 
          // }
          }//get the distance of neigh node whicha are updated
-             
        }//end the updated loop
                 //tempnode.pixelnum=mergenum;
 	       //tempnode.pixelval=mergesum;
 	       //tempnode.x=tempx;
-	        tempnode.y=minnode.x;
+	       tempnode.y=minnode.x;
                 tempnode.ndist=minnode.ndist;//closest distance
                 for(int z=0;z<lnngarr;z++){//find the other distance of neighbour node to tempnode
+                  if(nngnodes[z].y==tempnode.y&&nngnodes[z].pixelnum!=0&&nngnodes[z].x!=tempnode.x){
+                    if(minneighz.ndist>nngnodes[z].ndist){
+                        minneighz.pixelnum=nngnodes[z].pixelnum;
+	                minneighz.pixelval=nngnodes[z].pixelval;
+	                minneighz.x=nngnodes[z].x;
+	                minneighz.y=nngnodes[z].y;
+                        minneighz.ndist=nngnodes[z].ndist;
+                       }
+                   }
+               }//minimum value of neoghbout distance between neighbour node and others
+
+
+/*
+
+             for(int z=0;z<lnngarr;z++){//find the other distance of neighbour node to tempnode
                   if(nngnodes[z].x==tempnode.y&&nngnodes[z].pixelnum!=0&&nngnodes[z].x!=tempnode.x){
                     if(minneighz.ndist>nngnodes[z].ndist){
                         minneighz.pixelnum=nngnodes[z].pixelnum;
@@ -347,6 +364,7 @@ for(int i=0;i<lnngarr;i++){
                        }
                    }
                }//minimum value of neoghbout distance between neighbour node and others
+*/
 
                if(minneighz.ndist<tempnode.ndist){
 		    //if the new updated distance is bigger than original distance between neighbour node and other node,erease the tempnode and the node we choose to start the search
@@ -378,3 +396,5 @@ nnglist.clear();
         testDuplicate.release();
         return dstImage;
     }
+
+
